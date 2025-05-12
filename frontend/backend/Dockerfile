@@ -1,8 +1,9 @@
 # Używamy oficjalnego obrazu Go
 FROM golang:1.24
 
-RUN apt-get update
-RUN apt-get install -y build-essential gcc
+RUN apt-get update \
+    && apt-get install -y build-essential gcc \
+    && rm -rf /var/lib/apt/lists/*
 
 # Kopiujemy pliki go.mod i go.sum do kontenera
 COPY go.mod go.sum ./
